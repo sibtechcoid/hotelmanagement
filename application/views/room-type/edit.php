@@ -2,7 +2,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/room-type/edit/<?=$room_type->room_type?>" method="post">
+            <form action="<?php echo base_url(); ?>room-type/edit/<?php echo ($room_type->room_type); ?>" method="post">
 		
 			<h1>Update Room Type</h1>		
 			

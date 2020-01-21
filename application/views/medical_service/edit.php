@@ -2,7 +2,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/medical_service/edit/<?=$medical_service->medicalservice_id?>" method="post">
+		<form action="<?php echo base_url(); ?>medical_service/edit/<?=$medical_service->medicalservice_id?>" method="post">
 		
 			<h1>Update Medical Service's Information</h1>		
 			
@@ -20,9 +20,7 @@
 
 				<div class="field">
 					<label for="medicalservice_details">Medicalservice Details:</label>
-					<textarea type="text" id="medicalserviceDetails" name="medicalserviceDetails">
-<?=$medical_service->medicalservice_details?>
-					</textarea>
+					<textarea type="text" id="medicalserviceDetails" name="medicalserviceDetails"><?=$medical_service->medicalservice_details?></textarea>
 				</div> <!-- /password -->
 
 			</div> <!-- /login-fields -->

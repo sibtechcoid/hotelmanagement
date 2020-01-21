@@ -1,14 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 26, 2014 at 10:47 PM
--- Server version: 5.5.28
--- PHP Version: 5.3.10-1ubuntu3.4
+-- Host: 127.0.0.1
+-- Generation Time: Jan 19, 2016 at 01:28 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `hotel`
@@ -18,6 +24,12 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_all_customers`(IN id INT)
+BEGIN
+SELECT count(*) FROM customer;
+
+END$$
+
 CREATE DEFINER=`hotel`@`localhost` PROCEDURE `get_available_rooms`(IN o_room_type varchar(50), IN o_checkin_date varchar(50), IN o_checkout_date varchar(50))
 BEGIN
 SELECT * FROM `room` WHERE room_type=o_room_type AND NOT EXISTS (
@@ -56,7 +68,15 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `customer_telephone` varchar(50) NOT NULL,
   `customer_email` varchar(50) NOT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `customer_firstname`, `customer_lastname`, `customer_TCno`, `customer_city`, `customer_country`, `customer_telephone`, `customer_email`) VALUES
+(1, 'channu', 'hakari', '1', 'hubli', 'india', '9900371461', 'channaveer@gmail.com'),
+(2, 'Prabhanjan', 'l', '12', 'hubli', 'inida', '1234567890', 'prabhanjan@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -69,7 +89,15 @@ CREATE TABLE IF NOT EXISTS `department` (
   `department_name` varchar(50) NOT NULL,
   `department_budget` float DEFAULT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`department_id`, `department_name`, `department_budget`) VALUES
+(1, 'Manager', 1000),
+(3, 'Laundry', 2000);
 
 -- --------------------------------------------------------
 
@@ -133,7 +161,15 @@ CREATE TABLE IF NOT EXISTS `employee` (
   UNIQUE KEY `email` (`employee_email`),
   KEY `department` (`department_id`),
   KEY `login` (`employee_username`,`employee_password`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`employee_id`, `employee_username`, `employee_password`, `employee_firstname`, `employee_lastname`, `employee_telephone`, `employee_email`, `department_id`, `employee_type`, `employee_salary`, `employee_hiring_date`) VALUES
+(1, 'channaveer', 'channaveer', 'Channaveer', 'Hakari', '9900371461', 'channaveer888@gmail.com', 1, 'Permanent', 20000, '2015-12-21'),
+(2, 'ganesh', 'ganesh', 'Ganesh', 'Y', '1234567890', 'ganesh@gmail.com', 1, 'Permanent', 10000, '2015-12-22');
 
 -- --------------------------------------------------------
 
@@ -157,19 +193,19 @@ CREATE TABLE IF NOT EXISTS `get_medicalservice` (
 --
 -- Triggers `get_medicalservice`
 --
-DROP TRIGGER IF EXISTS `after_insert_medical_service`;
-DELIMITER //
-CREATE TRIGGER `after_insert_medical_service` AFTER INSERT ON `get_medicalservice`
- FOR EACH ROW BEGIN
-    UPDATE room_sales SET room_sales.total_service_price = room_sales.total_service_price + NEW.medicalservice_price WHERE room_sales.customer_id = NEW.customer_id AND room_sales.checkin_date <= NEW.medicalservice_date AND room_sales.checkout_date >= NEW.medicalservice_date;
-END
-//
-DELIMITER ;
 DROP TRIGGER IF EXISTS `after_delete_medical_service`;
 DELIMITER //
 CREATE TRIGGER `after_delete_medical_service` BEFORE DELETE ON `get_medicalservice`
  FOR EACH ROW BEGIN
     UPDATE room_sales SET room_sales.total_service_price = room_sales.total_service_price - OLD.medicalservice_price WHERE room_sales.customer_id = OLD.customer_id AND room_sales.checkin_date <= OLD.medicalservice_date AND room_sales.checkout_date >= OLD.medicalservice_date;
+END
+//
+DELIMITER ;
+DROP TRIGGER IF EXISTS `after_insert_medical_service`;
+DELIMITER //
+CREATE TRIGGER `after_insert_medical_service` AFTER INSERT ON `get_medicalservice`
+ FOR EACH ROW BEGIN
+    UPDATE room_sales SET room_sales.total_service_price = room_sales.total_service_price + NEW.medicalservice_price WHERE room_sales.customer_id = NEW.customer_id AND room_sales.checkin_date <= NEW.medicalservice_date AND room_sales.checkout_date >= NEW.medicalservice_date;
 END
 //
 DELIMITER ;
@@ -280,6 +316,13 @@ CREATE TABLE IF NOT EXISTS `massage_room` (
   PRIMARY KEY (`massageroom_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
+--
+-- Dumping data for table `massage_room`
+--
+
+INSERT INTO `massage_room` (`massageroom_id`, `massageroom_open_time`, `massageroom_close_time`, `massageroom_details`) VALUES
+(1, '8.00 Am', '10.00 Pm', 'Ayruedic Massage');
+
 -- --------------------------------------------------------
 
 --
@@ -331,7 +374,14 @@ CREATE TABLE IF NOT EXISTS `medical_service` (
   `medicalservice_close_time` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `medicalservice_details` text CHARACTER SET utf8,
   PRIMARY KEY (`medicalservice_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf16 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf16 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `medical_service`
+--
+
+INSERT INTO `medical_service` (`medicalservice_id`, `medicalservice_open_time`, `medicalservice_close_time`, `medicalservice_details`) VALUES
+(1, '8.00 Am', '10.00 Pm', 'First Aid');
 
 -- --------------------------------------------------------
 
@@ -369,6 +419,13 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   `table_count` int(11) DEFAULT NULL,
   PRIMARY KEY (`restaurant_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `restaurant`
+--
+
+INSERT INTO `restaurant` (`restaurant_name`, `restaurant_open_time`, `restaurant_close_time`, `restaurant_details`, `table_count`) VALUES
+('Rest Name', '8.00 Am', '10.00 Pm', 'Very good', 4);
 
 -- --------------------------------------------------------
 
@@ -418,7 +475,14 @@ CREATE TABLE IF NOT EXISTS `room` (
   `room_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`room_id`),
   KEY `room_type` (`room_type`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=201 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`room_id`, `room_type`) VALUES
+(3, 'Double Bed');
 
 --
 -- Triggers `room`
@@ -490,6 +554,14 @@ CREATE TABLE IF NOT EXISTS `room_type` (
   PRIMARY KEY (`room_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `room_type`
+--
+
+INSERT INTO `room_type` (`room_type`, `room_price`, `room_details`, `room_quantity`) VALUES
+('Double Bed', 100, 'Double room', 3),
+('Single Bed', 200, 'Single Bed', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -502,7 +574,14 @@ CREATE TABLE IF NOT EXISTS `sport_facilities` (
   `sportfacility_close_time` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `sportfacility_details` text CHARACTER SET utf8,
   PRIMARY KEY (`sportfacility_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `sport_facilities`
+--
+
+INSERT INTO `sport_facilities` (`sportfacility_id`, `sportfacility_open_time`, `sportfacility_close_time`, `sportfacility_details`) VALUES
+(1, '8.00 Am', '10.00 Pm', 'Chess');
 
 --
 -- Constraints for dumped tables
@@ -583,3 +662,6 @@ ALTER TABLE `room_sales`
   ADD CONSTRAINT `room_sales_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `room_sales_ibfk_3` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

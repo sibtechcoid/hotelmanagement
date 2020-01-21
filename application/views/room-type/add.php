@@ -2,7 +2,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/room-type/add" method="post">
+		<form action="<?php echo base_url(); ?>room-type/add" method="post">
 		
 			<h1>Add Room Type</h1>		
 <? if(isset($error)) {?>

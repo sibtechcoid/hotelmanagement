@@ -74,10 +74,9 @@ class Room_type extends CI_Controller {
 		
 		$data = array('title' => 'Edit Room Type - DB Hotel Management System', 'page' => 'room_type');
 		$this->load->view('header', $data);
-
 		$room_type = $this->room_m->getRoomType($room_type);
-		
-		$viewdata = array('room_type'  => $room_type[0]);
+                
+		$viewdata = array('room_type'  => $room_type);
 		$this->load->view('room-type/edit',$viewdata);
 
 		$this->load->view('footer');

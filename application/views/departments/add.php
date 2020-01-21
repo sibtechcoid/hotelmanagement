@@ -2,7 +2,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/departments/add" method="post">
+		<form action="<?php echo base_url(); ?>departments/add" method="post">
 		
 			<h1>Add Department</h1>		
 			

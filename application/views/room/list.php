@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="span12">
-			<a href="/room/add" class="btn btn-small btn-primary"><i class="btn-icon-only icon-ok"></i>Add Rooms</a>
+			<a href="<?php echo base_url(); ?>room/add" class="btn btn-small btn-primary"><i class="btn-icon-only icon-ok"></i>Add Rooms</a>
 			<br><br>
 			<table class="table table-striped table-bordered">
 				<thead>
@@ -17,6 +17,7 @@
 				</thead>
 				<tbody>
 				<?
+                                    if($rooms){
 					foreach ($rooms as $rm) {
 						// $emp->username
 				?>
@@ -26,11 +27,11 @@
 				    <td> <?=$rm->max_id?> </td>
 				    <td> <?=($rm->max_id-$rm->min_id+1) ?> </td>
 				    <td class="td-actions">
-				    	<a href="/room/edit/<?=$rm->room_type?>/<?=$rm->min_id?>/<?=$rm->max_id?>" class="btn btn-small btn-primary"><i class="btn-icon-only icon-edit"> </i></a>
-				    	<a href="/room/delete/<?=$rm->min_id?>/<?=$rm->max_id?>" onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a>
+				    	<a href="<?php echo base_url(); ?>room/edit/<?=$rm->room_type?>/<?=$rm->min_id?>/<?=$rm->max_id?>" class="btn btn-small btn-primary"><i class="btn-icon-only icon-edit"> </i></a>
+				    	<a href="<?php echo base_url(); ?>room/delete/<?=$rm->min_id?>/<?=$rm->max_id?>" onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a>
 				    </td>
 				  </tr>
-				<? } ?>
+				<? }} ?>
 				</tbody>
 			</table>
 		</div>

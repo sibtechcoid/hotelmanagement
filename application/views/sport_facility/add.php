@@ -2,7 +2,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/sport_facility/add" method="post">
+		<form action="<?php echo base_url(); ?>sport_facility/add" method="post">
 		
 			<h1>Add Sport Facility</h1>		
 			

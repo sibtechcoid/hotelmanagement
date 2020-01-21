@@ -2,7 +2,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/massage_room/edit/<?=$massage_room->massageroom_id?>" method="post">
+		<form action="<?php echo base_url(); ?>massage_room/edit/<?=$massage_room->massageroom_id?>" method="post">
 		
 			<h1>Update Massage Room's Information</h1>		
 			
@@ -20,9 +20,7 @@
 
 				<div class="field">
 					<label for="massageroom_details">Massageroom Details:</label>
-					<textarea type="text" id="massageroomDetails" name="massageroomDetails">
-<?=$massage_room->massageroom_details?>
-					</textarea>
+					<textarea type="text" id="massageroomDetails" name="massageroomDetails"><?=$massage_room->massageroom_details?></textarea>
 				</div> <!-- /password -->
 
 			</div> <!-- /login-fields -->

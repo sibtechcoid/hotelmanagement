@@ -40,7 +40,7 @@ class Customer extends CI_Controller {
 		$this->load->view('customer/add',$viewdata);
 		$this->load->view('footer');
 	}
-/*
+
 	function delete($employee_id)
 	{
 		$this->employee_m->deleteEmployee($employee_id);
@@ -82,7 +82,7 @@ class Customer extends CI_Controller {
 	{
 		$this->check_login();
 		
-		$room_types = $this->room_m->getRoomTypes();
+		$room_types = $this->room_m->get_room_types();
 		$viewdata = array('room_types' => $room_types);
 		$data = array('title' => 'Reservation - DB Hotel Management System', 'page' => 'reservation');
 		$this->load->view('header', $data);
@@ -96,7 +96,7 @@ class Customer extends CI_Controller {
 		echo $year." ".$month." ".$day;
 		// $this->load->view('reservation/make');
 		$this->load->view('footer');
-	}*/
+	}
 }
 
 /* End of file welcome.php */

@@ -2,7 +2,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/employee/add" method="post">
+		<form action="<?php echo base_url(); ?>employee/add" method="post">
 		
 			<h1>Add Employee</h1>		
 			

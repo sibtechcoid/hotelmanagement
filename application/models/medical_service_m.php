@@ -12,13 +12,13 @@ class Medical_service_m extends CI_Model {
     {
         $query = $this->db->from('medical_service')->get();
         $data = array();
-
         foreach (@$query->result() as $row)
         {
             $data[] = $row;
         }
-        if(count($data))
+        if(count($data)){
             return $data;
+        }
         return false;
     }
 

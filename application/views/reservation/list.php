@@ -8,7 +8,7 @@
 <div class="main">
 	<div class="main-inner">
 		<div class="container">
-			<form action="/reservation/make" method="post">
+			<form action="<?php echo base_url(); ?>reservation/make" method="post">
 			<div class="add-fields">
 
 				<!--div class="field">
@@ -46,7 +46,7 @@
 					<table class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th colspan="<?=$cols?>">Avalilable Rooms</th>
+								<th colspan="<?=$cols?>">Available Rooms</th>
 							</tr>
 						</thead>
 						<tbody>

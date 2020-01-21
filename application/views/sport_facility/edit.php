@@ -2,7 +2,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/sport_facility/edit/<?=$sport_facility->sportfacility_id?>" method="post">
+		<form action="<?php echo base_url(); ?>sport_facility/edit/<?=$sport_facility->sportfacility_id?>" method="post">
 		
 			<h1>Update Sport Facility's Information</h1>		
 			
@@ -20,9 +20,7 @@
 
 				<div class="field">
 					<label for="sportfacility_details">Sportfacility Details:</label>
-					<textarea type="text" id="sportfacilityDetails" name="sportfacilityDetails">
-<?=$sport_facility->sportfacility_details?>
-					</textarea>
+					<textarea type="text" id="sportfacilityDetails" name="sportfacilityDetails"><?=$sport_facility->sportfacility_details?></textarea>
 				</div> <!-- /password -->
 
 			</div> <!-- /login-fields -->

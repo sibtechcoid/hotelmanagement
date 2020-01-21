@@ -2,7 +2,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/customer/add/<?=$reference?>" method="post">
+		<form action="<?php echo base_url(); ?>customer/add/<?=$reference?>" method="post">
 		
 			<h1>Add Customer</h1>		
 <? if(isset($error)) {?>

@@ -2,7 +2,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="/departments/edit/<?=$department->department_id?>" method="post">
+		<form action="<?php echo base_url(); ?>departments/edit/<?=$department->department_id?>" method="post">
 		
 			<h1>Update Department's Information</h1>		
 			

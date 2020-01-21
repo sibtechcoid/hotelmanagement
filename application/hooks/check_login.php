@@ -16,5 +16,3 @@ class postControllerHook{
 		define("SHOW_GUIDE", !$CI->session->userdata('show_guide'));
 	}
 }
-
-?>

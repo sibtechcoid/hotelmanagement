@@ -56,7 +56,7 @@
                 <tbody>
                   <? foreach ($customer_most_paid as $k => $cust) { ?>
                   <tr>
-                    <td> <? echo $cust->customer_firstname." ".$cust->customer_lastname;?> </td>
+                    <td> <?php echo $cust->customer_firstname." ".$cust->customer_lastname;?> </td>
                     <td> <?=$cust->customer_TCno?> </td>
                     <td> <?=$cust->checkin_count?></td>
                     <td> <?=$cust->total_paid?></td>
@@ -168,9 +168,9 @@
             <!-- /widget-header -->
             <div class="widget-content">
               <div class="shortcuts">
-                <a href="/room" class="shortcut"><i class="shortcut-icon icon-home"></i><span class="shortcut-label">Rooms</span> </a>
-                <a href="/employee" class="shortcut"><i class="shortcut-icon icon-user-md"></i><span class="shortcut-label">Employees</span> </a>
-                <a href="/login/logout" class="shortcut"><i class="shortcut-icon icon-off"></i><span class="shortcut-label">Logout</span> </a>
+                  <a href="<?php echo base_url(); ?>room" class="shortcut"><i class="shortcut-icon icon-home"></i><span class="shortcut-label">Rooms</span> </a>
+                <a href="<?php echo base_url(); ?>employee" class="shortcut"><i class="shortcut-icon icon-user-md"></i><span class="shortcut-label">Employees</span> </a>
+                <a href="<?php echo base_url(); ?>login/logout" class="shortcut"><i class="shortcut-icon icon-off"></i><span class="shortcut-label">Logout</span> </a>
                 
                 <!--<a href="javascript:;" class="shortcut"> <i class="shortcut-icon icon-tag"></i><span class="shortcut-label">Tags</span> </a>-->
               </div>

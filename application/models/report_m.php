@@ -11,12 +11,15 @@ class Report_m extends CI_Model {
     function today_stats()
     {
         $date = date('Y-m-d');
-        $query = $this->db->query("CALL todays_service_count('$date')");
+        //$query = $this->db->query("CALL todays_service_count('$date')");
+       // echo "SELECT count(*) as amount, laundry_amount as type FROM laundry_service WHERE laundry_date='$date' UNION ALL SELECT count(*) as amount, massage_price as type FROM massage_service WHERE massage_date='$date' UNION ALL SELECT count(*) as amount, roomservice_price as type FROM get_roomservice WHERE roomservice_date='$date' UNION ALL SELECT count(*) as amount, medicalservice_price as type FROM get_medicalservice WHERE medicalservice_date='$date' UNION ALL SELECT count(*) as amount, dosport_price as type FROM do_sport WHERE dosport_date='$date' UNION ALL SELECT count(*) as amount, book_price as type FROM restaurant_booking WHERE book_date='$date'";
+        $query = $this->db->query("SELECT count(*) as amount, laundry_amount as type FROM laundry_service WHERE laundry_date='$date' UNION ALL SELECT count(*) as amount, massage_price as type FROM massage_service WHERE massage_date='$date' UNION ALL SELECT count(*) as amount, roomservice_price as type FROM get_roomservice WHERE roomservice_date='$date' UNION ALL SELECT count(*) as amount, medicalservice_price as type FROM get_medicalservice WHERE medicalservice_date='$date' UNION ALL SELECT count(*) as amount, dosport_price as type FROM do_sport WHERE dosport_date='$date' UNION ALL SELECT count(*) as amount, book_price as type FROM restaurant_booking WHERE book_date='$date'");
         $data = array();
-
-        foreach (@$query->result() as $row)
+        if($query->num_rows() > 0){
+        foreach ($query->result() as $row)
         {
             $data[$row->type] = $row->amount;
+        }
         }
         if(count($data))
             return $data;

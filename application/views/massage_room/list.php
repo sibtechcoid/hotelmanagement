@@ -6,7 +6,7 @@
         <a href="javascript:open_form();" class="btn btn-small btn-success"><i class="btn-icon-only icon-plus"></i>Add Massage Service</a>
 			<div class="account-container" style="display: none;" id="form">
 				<div class="content clearfix">
-					<form action="/service/massage_room" method="post">
+					<form action="<?php echo base_url(); ?>service/massage_room" method="post">
 					
 						<div class="add-fields">
 
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<hr>
-			<a href="/massage_room/add" class="btn btn-small btn-primary"><i class="btn-icon-only icon-ok"></i>Add Massage Room</a>
+			<a href="<?php echo base_url(); ?>massage_room/add" class="btn btn-small btn-primary"><i class="btn-icon-only icon-ok"></i>Add Massage Room</a>
 			<br><br>
 			<table class="table table-striped table-bordered">
 				<thead>
@@ -65,11 +65,12 @@
 				    <th> Massage Room Opentime </th>
 				    <th> Massage Room Closetime </th>
 				    <th> Massage Room Details </th>
-				    <th class="td-actions", width="100"> Actions </th>
+				    <th class="td-actions" width="100"> Actions </th>
 				  </tr>
 				</thead>
 				<tbody>
 				<?
+                                    if($massageRooms){
 					foreach ($massageRooms as $massage) {
 						// $emp->username
 				?>
@@ -77,9 +78,9 @@
 				    <td> <?=$massage->massageroom_open_time?> </td>
 				    <td> <?=$massage->massageroom_close_time?> </td>
 				    <td> <?=$massage->massageroom_details?> </td>
-				    <td class="td-actions"><a href="/massage_room/edit/<?=$massage->massageroom_id?>" class="btn btn-small btn-primary"><i class="btn-icon-only icon-edit"> </i></a><a href="/massage_room/delete/<?=$massage->massageroom_id?>" onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+				    <td class="td-actions"><a href="<?php echo base_url(); ?>massage_room/edit/<?=$massage->massageroom_id?>" class="btn btn-small btn-primary"><i class="btn-icon-only icon-edit"> </i></a><a href="<?php echo base_url(); ?>massage_room/delete/<?=$massage->massageroom_id?>" onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
 				  </tr>
-				<? } ?>
+				<? }} ?>
 				</tbody>
 			</table>
 		</div>

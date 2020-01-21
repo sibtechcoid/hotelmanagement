@@ -73,10 +73,7 @@ class Medical_service extends CI_Controller {
 	{
 		$medicalServices = $this->medical_service_m->get_medicalServices();
 		$customers = $this->customer_m->get_active_customers();
-
-
 		$viewdata = array('medicalServices' => $medicalServices, 'customers' => $customers);
-
 		$data = array('title' => 'Medical Service - DB Hotel Management System', 'page' => 'medical_service');
 		$this->load->view('header', $data);
 		$this->load->view('medical_service/list',$viewdata);

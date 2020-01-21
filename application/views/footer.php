@@ -15,13 +15,13 @@
 <!-- Le javascript
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
-<script src="/js/jquery-1.7.2.min.js"></script> 
-<script src="/js/excanvas.min.js"></script> 
-<script src="/js/chart.min.js" type="text/javascript"></script> 
-<script src="/js/bootstrap.js"></script>
-<script language="javascript" type="text/javascript" src="/js/full-calendar/fullcalendar.min.js"></script>
+<script src="<?php echo base_url(); ?>js/jquery-1.7.2.min.js"></script> 
+<script src="<?php echo base_url(); ?>js/excanvas.min.js"></script> 
+<script src="<?php echo base_url(); ?>js/chart.min.js" type="text/javascript"></script> 
+<script src="<?php echo base_url(); ?>js/bootstrap.js"></script>
+<script language="javascript" type="text/javascript" src="<?php echo base_url(); ?>js/full-calendar/fullcalendar.min.js"></script>
  
-<script src="/js/base.js"></script> 
+<script src="<?php echo base_url(); ?>js/base.js"></script> 
 
 <?
 if($page == "reservation" ) {
@@ -180,7 +180,7 @@ if($page == "reservation" ) {
     <?
     if(SHOW_GUIDE) {
     ?>
-    <script src="js/guidely/guidely.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/guidely/guidely.min.js"></script>
 
     <script>
     $(function () {

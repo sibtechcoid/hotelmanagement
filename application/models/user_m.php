@@ -19,7 +19,7 @@ class User_m extends CI_Model {
             // $row->customer_id
             // $row->customer_username
             // $data[0]->customer_id
-            var_dump($row);
+//            var_dump($row);
         }
         if(count($data))
             return $data;
