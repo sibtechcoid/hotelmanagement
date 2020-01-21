@@ -1,6 +1,10 @@
 Hotel Management Software
 ===============
 
+konfigurasi ./applikasi/config
+db  ./database
+user/password : standard sibtech user/pass :P
+
 This web application is developed with MySQL, PHP, Codeigniter, jQuery
 
 ![ScreenShot](https://raw.githubusercontent.com/tugbadogan/hotelmanagement/master/screenshots/8.png)

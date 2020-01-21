@@ -168,8 +168,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
 --
 
 INSERT INTO `employee` (`employee_id`, `employee_username`, `employee_password`, `employee_firstname`, `employee_lastname`, `employee_telephone`, `employee_email`, `department_id`, `employee_type`, `employee_salary`, `employee_hiring_date`) VALUES
-(1, 'channaveer', 'channaveer', 'Channaveer', 'Hakari', '9900371461', 'channaveer888@gmail.com', 1, 'Permanent', 20000, '2015-12-21'),
-(2, 'ganesh', 'ganesh', 'Ganesh', 'Y', '1234567890', 'ganesh@gmail.com', 1, 'Permanent', 10000, '2015-12-22');
+(1, 'sibtech', 'sibtech2019', 'Channaveer', 'Hakari', '9900371461', 'sibtech.indonesia@gmail.com', 1, 'Permanent', 20000, '2015-12-21'),
 
 -- --------------------------------------------------------
 
