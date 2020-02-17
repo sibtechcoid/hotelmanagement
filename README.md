@@ -1,4 +1,4 @@
-Hotel Management Software
+Hotel Management Software (deprecated)
 ===============
 
 konfigurasi ./applikasi/config
